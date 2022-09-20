@@ -14,3 +14,6 @@ http:
     - 10.1.0.0/24
     - 172.30.33.0/28
   use_x_forwarded_for: true
+
+homeassistant:
+  packages: !include_dir_merge_named packages/
