@@ -1,0 +1,4 @@
+tibber_data:
+  tibber_data:
+    email: !secret tibber_user
+    password: !secret tibber_pass

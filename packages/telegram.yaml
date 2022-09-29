@@ -1,0 +1,11 @@
+telegram_config:
+  telegram_bot:
+    - platform: polling
+      api_key: !secret telegram_apikey
+      allowed_chat_ids:
+        - !secret telegram_chatid_group
+        - !secret telegram_chatid_me
+  notify:
+    - platform: telegram
+      name: telegramnotification
+      chat_id: !secret telegram_chatid_group

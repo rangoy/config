@@ -1,0 +1,65 @@
+power_powercalculation:
+  sensor:
+    - platform: integration
+      source: sensor.measured_power_1
+      name: Measured kWh 1 vaskemaskin
+      #unit_prefix: k
+      round: 3
+      unique_id: measured_kwh_1
+
+    - platform: integration
+      source: sensor.measured_power_2
+      name: Measured kWh 2 oppvask
+      #unit_prefix: k
+      round: 3
+      unique_id: measured_kwh_2
+
+    - platform: integration
+      source: sensor.measured_power_3
+      name: Measured kWh 3 villavent
+      #unit_prefix: k
+      round: 3
+      unique_id: measured_kwh_3
+
+    - platform: integration
+      source: sensor.measured_power_4
+      name: Measured kWh 4 VVB
+      #unit_prefix: k
+      round: 3
+      method: left
+      unique_id: measured_kwh_4
+
+    - platform: integration
+      source: sensor.measured_power_4
+      name: Measured kWh 4 VVB left
+      #unit_prefix: k
+      round: 3
+      method: left
+      unique_id: measured_kwh_4_left
+
+    - platform: integration
+      source: sensor.measured_power_5
+      name: Measured kWh 5 bad 1
+      #unit_prefix: k
+      round: 3
+      unique_id: measured_kwh_5
+      method: left
+
+    - platform: integration
+      source: sensor.measured_power_6
+      name: Measured kWh 6 bad 2
+      #unit_prefix: k
+      round: 3
+      unique_id: measured_kwh_6
+      method: left
+
+  homeassistant:
+    customize_glob:
+      "sensor.measured_kwh_*":
+        last_reset: 0
+        device_class: energy
+        state_class: total_increasing
+      "sensor.stue_daily_energy":
+        last_reset: 0
+        device_class: energy
+        state_class: total_increasing

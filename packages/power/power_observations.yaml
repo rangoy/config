@@ -1,0 +1,18 @@
+power_observations:
+  template:
+    - binary_sensor:
+        - name: "Vaskemaskin kjører"
+          delay_off:
+            minutes: 9
+          delay_on:
+            minutes: 1
+          state: >
+            {{ states('sensor.calibrated_ampere_1')|float > 0 }}
+    - binary_sensor:
+        - name: "Oppvaskmaskin kjører"
+          delay_off:
+            minutes: 24
+          delay_on:
+            minutes: 1
+          state: >
+            {{ states('sensor.calibrated_ampere_2')|float > 0 }}

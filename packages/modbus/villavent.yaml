@@ -1,0 +1,403 @@
+modbus_villavent:
+  modbus:
+    name: hub1
+    #type: rtuovertcp
+    type: tcp
+    host: 10.1.0.3
+    port: 8899
+    climates:
+      - name: Villavent
+        slave: 1
+        data_type: uint16
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        min_temp: 0
+        max_temp: 22
+        temp_step: 1
+        target_temp_register: 207
+        address: 214
+    sensors:
+      - name: Supply air
+        slave: 1
+        address: 213
+        #register_type: input
+        unit_of_measurement: °C
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: Extract air
+
+        slave: 1
+        address: 214
+        #register_type: input
+        unit_of_measurement: °C
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: Exhaust/preheat
+
+        slave: 1
+        address: 215
+        #register_type: input
+        unit_of_measurement: °C
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: Overheat/frost protect
+
+        slave: 1
+        address: 216
+        #register_type: input
+        unit_of_measurement: °C
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: Outdoor air
+
+        slave: 1
+        address: 217
+        #register_type: input
+        unit_of_measurement: "°C"
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: Viftenivå
+
+        slave: 1
+        address: 100
+        #register_type: input
+        unit_of_measurement: Nivå
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: SF RPM
+
+        slave: 1
+        address: 110
+        #register_type: input
+        unit_of_measurement: RPM
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: EF RPM
+
+        slave: 1
+        address: 111
+        #register_type: input
+        unit_of_measurement: RPM
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: Cltr type
+
+        slave: 1
+        address: 138
+        #register_type: input
+        unit_of_measurement: Nivå
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_FAN_SF_FLOW_LOW
+
+        slave: 1
+        address: 101
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_FAN_EF_FLOW_LOW
+
+        slave: 1
+        address: 102
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_FAN_SF_FLOW_NOM
+
+        slave: 1
+        address: 103
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_FAN_EF_FLOW_NOM
+
+        slave: 1
+        address: 104
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_FAN_SF_FLOW_HIGH
+
+        slave: 1
+        address: 105
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_FAN_EF_FLOW_HIGH
+
+        slave: 1
+        address: 106
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_HEATER_TYPE
+
+        slave: 1
+        address: 200
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_COOLER_TYPE
+
+        slave: 1
+        address: 201
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_WC_SIGNAL
+
+        slave: 1
+        address: 203
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_WH_SIGNAL
+
+        slave: 1
+        address: 204
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_TEMP_LVL
+
+        slave: 1
+        address: 206
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_TEMP_SP
+
+        slave: 1
+        address: 207
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_TEMP_LVL1
+
+        slave: 1
+        address: 208
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_TEMP_LVL2
+
+        slave: 1
+        address: 209
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_TEMP_LVL3
+
+        slave: 1
+        address: 210
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_TEMP_LVL4
+
+        slave: 1
+        address: 211
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_TEMP_LVL5
+
+        slave: 1
+        address: 212
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_TEMP_SP_DEG
+
+        slave: 1
+        address: 221
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_HC_OUT
+
+        slave: 1
+        address: 233
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_PREHEATER_OUT
+
+        slave: 1
+        address: 235
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 0.1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: REG_ROTOR_STATE
+
+        slave: 1
+        address: 350
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: Filter period
+
+        slave: 1
+        address: 600
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16
+
+      - name: Filter days
+
+        slave: 1
+        address: 601
+        #register_type: input
+        #unit_of_measurement:
+        count: 1
+        scale: 1
+        offset: 0
+        precision: 1
+        data_type: int16

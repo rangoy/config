@@ -1,0 +1,320 @@
+- id: "1610392053710"
+  name: nattlys
+  entities:
+    light.gangen:
+      supported_color_modes:
+        - brightness
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 73
+      hs_color:
+        - 360
+        - 100
+      rgb_color:
+        - 255
+        - 0
+        - 0
+      xy_color:
+        - 0.701
+        - 0.299
+      friendly_name: gangen
+      supported_features: 0
+      state: "on"
+    light.julestjerne:
+      supported_color_modes:
+        - brightness
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 56
+      hs_color:
+        - 360
+        - 100
+      rgb_color:
+        - 255
+        - 0
+        - 0
+      xy_color:
+        - 0.701
+        - 0.299
+      friendly_name: "julestjerne "
+      supported_features: 0
+      state: "on"
+    light.martin:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+        - brightness
+        - color_temp
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 61
+      hs_color:
+        - 1
+        - 89.3
+      rgb_color:
+        - 255
+        - 31
+        - 27
+      xy_color:
+        - 0.686
+        - 0.301
+      friendly_name: Martin
+      supported_features: 0
+      state: "on"
+    light.janna:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+        - brightness
+        - color_temp
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 255
+      hs_color:
+        - 360
+        - 100
+      rgb_color:
+        - 255
+        - 0
+        - 0
+      xy_color:
+        - 0.701
+        - 0.299
+      friendly_name: Janna
+      supported_features: 0
+      state: "on"
+- id: "1610396996604"
+  name: morgenlys
+  entities:
+    light.gangen:
+      supported_color_modes:
+        - brightness
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 73
+      hs_color:
+        - 225
+        - 100
+      rgb_color:
+        - 0
+        - 63
+        - 255
+      xy_color:
+        - 0.137
+        - 0.065
+      friendly_name: gangen
+      supported_features: 0
+      state: "on"
+    light.julestjerne:
+      supported_color_modes:
+        - brightness
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 255
+      hs_color:
+        - 225
+        - 100
+      rgb_color:
+        - 0
+        - 63
+        - 255
+      xy_color:
+        - 0.137
+        - 0.065
+      friendly_name: "julestjerne "
+      supported_features: 0
+      state: "on"
+    light.martin:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+        - brightness
+        - color_temp
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 64
+      hs_color:
+        - 225
+        - 100
+      rgb_color:
+        - 0
+        - 63
+        - 255
+      xy_color:
+        - 0.137
+        - 0.065
+      friendly_name: Martin
+      supported_features: 0
+      state: "on"
+    light.janna:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+        - brightness
+        - color_temp
+        - hs
+        - onoff
+      friendly_name: Janna
+      supported_features: 0
+      state: unavailable
+- id: "1610397062091"
+  name: kveldslys
+  entities:
+    light.gangen:
+      supported_color_modes:
+        - brightness
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 73
+      hs_color:
+        - 120
+        - 100
+      rgb_color:
+        - 0
+        - 255
+        - 0
+      xy_color:
+        - 0.172
+        - 0.747
+      friendly_name: gangen
+      supported_features: 0
+      state: "on"
+    light.julestjerne:
+      supported_color_modes:
+        - brightness
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 255
+      hs_color:
+        - 135
+        - 100
+      rgb_color:
+        - 0
+        - 255
+        - 63
+      xy_color:
+        - 0.17
+        - 0.703
+      friendly_name: "julestjerne "
+      supported_features: 0
+      state: "on"
+    light.martin:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+        - brightness
+        - color_temp
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 64
+      hs_color:
+        - 120
+        - 100
+      rgb_color:
+        - 0
+        - 255
+        - 0
+      xy_color:
+        - 0.172
+        - 0.747
+      friendly_name: Martin
+      supported_features: 0
+      state: "on"
+    light.janna:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+        - brightness
+        - color_temp
+        - hs
+        - onoff
+      friendly_name: Janna
+      supported_features: 0
+      state: unavailable
+- id: "1610397121573"
+  name: "dagslys "
+  entities:
+    light.gangen:
+      supported_color_modes:
+        - brightness
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 73
+      hs_color:
+        - 225
+        - 14.3
+      rgb_color:
+        - 218
+        - 227
+        - 255
+      xy_color:
+        - 0.293
+        - 0.298
+      friendly_name: gangen
+      supported_features: 0
+      state: "on"
+    light.julestjerne:
+      supported_color_modes:
+        - brightness
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 255
+      hs_color:
+        - 60
+        - 42.8
+      rgb_color:
+        - 255
+        - 255
+        - 145
+      xy_color:
+        - 0.396
+        - 0.443
+      friendly_name: "julestjerne "
+      supported_features: 0
+      state: "on"
+    light.martin:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+        - brightness
+        - color_temp
+        - hs
+        - onoff
+      color_mode: hs
+      brightness: 76
+      hs_color:
+        - 60
+        - 71.4
+      rgb_color:
+        - 255
+        - 255
+        - 72
+      xy_color:
+        - 0.432
+        - 0.497
+      friendly_name: Martin
+      supported_features: 0
+      state: "on"
+    light.janna:
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+        - brightness
+        - color_temp
+        - hs
+        - onoff
+      friendly_name: Janna
+      supported_features: 0
+      state: unavailable

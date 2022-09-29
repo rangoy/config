@@ -1,0 +1,11 @@
+rflink_config:
+  rflink:
+    port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_55936343034351F04032-if00
+
+  switch:
+    - platform: rflink
+      devices:
+        newkaku_0247acb6_0:
+          name: doorbell
+          fire_event: true
+          group: true
