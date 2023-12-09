@@ -2,10 +2,44 @@ rflink_config:
   rflink:
     port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_55936343034351F04032-if00
 
-  switch:
+  #  switch:
+  #    - platform: rflink
+  #      devices:
+  #        newkaku_0247acb6_0:
+  #          name: doorbell
+  #          fire_event: true
+  #          group: true
+  #light:
+  #  - platform: rflink
+  #    automatic_add: true
+  binary_sensor:
     - platform: rflink
+      #automatic_add: true
       devices:
         newkaku_0247acb6_0:
           name: doorbell
-          fire_event: true
-          group: true
+          off_delay: 5
+        newkaku_000c8f17_1:
+          name: doorsensor
+  sensor:
+    - platform: rflink
+      #automatic_add: true
+      devices:
+        xiron_5e01_hum:
+          name: Kjøleskap fukt
+          sensor_type: humidity
+        xiron_5e01_temp:
+          name: Kjøleskap temperatur
+          sensor_type: temperature
+        xiron_5e01_bat:
+          name: Kjøleskap batteri
+          sensor_type: battery
+#  switch:
+#    - platform: rflink
+#      devices:
+#        emw100_3d84_00:
+#          name: Garasjelys
+#          fire_event: true
+#          signal_repetitions: 5
+#          aliases: vphoenix_e054000_01
+#      automatic_add: true

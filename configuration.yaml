@@ -17,3 +17,17 @@ http:
 
 homeassistant:
   packages: !include_dir_merge_named packages/
+  allowlist_external_dirs:
+    - "/media/snapshots"
+
+folder_watcher:
+  - folder: /media/snapshots
+    patterns: ["*.jpg", "*.mp4"]
+
+logger:
+  default: info
+  logs:
+    rflink: debug
+    homeassistant.components.rflink: debug
+    homeassistant.components.zha: debug
+    zigpy: debug

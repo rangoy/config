@@ -5,7 +5,15 @@ telegram_config:
       allowed_chat_ids:
         - !secret telegram_chatid_group
         - !secret telegram_chatid_me
+        - !secret telegram_chatid_errors
+        - !secret telegram_chatid_spammy
   notify:
     - platform: telegram
       name: telegramnotification
       chat_id: !secret telegram_chatid_group
+    - platform: telegram
+      name: telegramspam
+      chat_id: !secret telegram_chatid_spammy
+    - platform: telegram
+      name: telegramerror
+      chat_id: !secret telegram_chatid_errors

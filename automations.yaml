@@ -13,7 +13,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 07:10:00
+    at: 07:45:00
   condition: []
   action:
   - scene: scene.dagslys
@@ -75,20 +75,19 @@
   alias: Doorbell
   trigger:
   - platform: state
-    entity_id: switch.doorbell
+    entity_id:
+    - binary_sensor.doorbell
     to: 'on'
   action:
-  - service: notify.mobile_app_gunnar_s10
-    data:
-      title: Doorbell
-      message: Someone is at the door!
   - service: notify.telegramnotification
     data:
       title: '*Ding dong*'
       message: Det ringer på!
-  - service: switch.turn_off
+  - service: automation.trigger
+    data:
+      skip_condition: true
     target:
-      entity_id: switch.doorbell
+      entity_id: automation.ta_film_dorkamera
   mode: single
 - id: '1614538952193'
   alias: 'Oppdatere villavent temp nivå '
@@ -197,6 +196,7 @@
     data:
       title: Oppvaskmaskin
       message: Oppvaskmaskina ferdig
+    enabled: false
   - service: notify.telegramnotification
     data:
       title: '*Oppvaskmaskin*'
@@ -216,8 +216,654 @@
     data:
       title: Vaskemaskin
       message: Vaskemaskina ferdig
+    enabled: false
   - service: notify.telegramnotification
     data:
       title: '*Vaskemaskin*'
       message: Vaskemaskina ferdig
+  mode: single
+- id: '1666633903137'
+  alias: Døra er åpen
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 977e4cfdb56002c94a1aeaf9fd1cdc50
+    entity_id: 1a66c4e9fcf96d79cf91f0038b6b9972
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 3
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.telegramnotification
+    data:
+      title: '*Døra*'
+      message: Døra er åpen, sjekk!
+  - service: automation.trigger
+    data: {}
+    target:
+      entity_id: automation.ta_bilde_dorkamera
+  mode: single
+- id: '1666634811042'
+  alias: Ta bilde dørkamera (spam)
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 977e4cfdb56002c94a1aeaf9fd1cdc50
+    entity_id: 1a66c4e9fcf96d79cf91f0038b6b9972
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      filename: /media/snapshots/camera_spam_{{now().strftime('%Y%m%d_%H%M%S')}}.jpg
+    target:
+      device_id: 87514acb8730da302d6068eba0623fe2
+  mode: single
+- id: '1666636426666'
+  alias: Send bilde
+  trigger:
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: created
+  action:
+  - if:
+    - condition: template
+      value_template: '{{ ''spam'' in trigger.event.data.path}}'
+    then:
+    - service: notify.telegramspam
+      data:
+        title: '*Dørkamera*'
+        message: Kameraet tok bilde
+        data:
+          photo:
+          - file: '{{trigger.event.data.path}}'
+          disable_notification: true
+    else:
+    - service: notify.telegramnotification
+      data:
+        title: '*Dørkamera*'
+        message: Kameraet tok bilde
+        data:
+          photo:
+          - file: '{{trigger.event.data.path}}'
+          disable_notification: true
+- id: '1666719607338'
+  alias: Fuktsensor
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: 16ab6d2b516b207fbd167e38f47babc8
+    entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.telegramnotification
+    data:
+      title: Alarm
+      message: Fukt under kjøkkenbenken
+  mode: single
+- id: '1666719790875'
+  description: Vannsensor kjøkken mista kontakt
+  trigger:
+  - device_id: 16ab6d2b516b207fbd167e38f47babc8
+    domain: zha
+    platform: device
+    type: device_offline
+    subtype: device_offline
+  condition: []
+  action:
+  - service: notify.telegramnotification
+    data:
+      message: Vannsensor kjøkken mista kontakt
+      title: Advarsel
+  mode: single
+- id: '1669324701960'
+  alias: Start Roberto
+  description: ''
+  trigger:
+  - device_id: f96655d388ebbf8ecb0495f8e8d87c12
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: right
+  condition: []
+  action:
+  - device_id: 86c52e9a77f438371dae053b75644fea
+    domain: vacuum
+    entity_id: vacuum.roberto
+    type: clean
+  mode: single
+- id: '1669325157728'
+  alias: Roberto hjem
+  description: ''
+  trigger:
+  - device_id: f96655d388ebbf8ecb0495f8e8d87c12
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: left
+  condition: []
+  action:
+  - device_id: 86c52e9a77f438371dae053b75644fea
+    domain: vacuum
+    entity_id: vacuum.roberto
+    type: dock
+  mode: single
+- id: '1670068363702'
+  alias: Utelys av
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: bd0dfbff90fe9cad71ac637aa1ee4be4
+    entity_id: light.utelys_garasje
+    domain: light
+  mode: single
+- id: '1670068406831'
+  alias: Utelys på
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+  condition: []
+  action:
+  - type: turn_on
+    device_id: bd0dfbff90fe9cad71ac637aa1ee4be4
+    entity_id: light.utelys_garasje
+    domain: light
+  mode: single
+- id: '1670834058977'
+  alias: Varsle ved dongleproblem
+  description: ''
+  trigger:
+  - device_id: 4a166bcd6afb39e113d830761165e073
+    domain: zha
+    platform: device
+    type: device_offline
+    subtype: device_offline
+    enabled: false
+  - platform: state
+    entity_id:
+    - switch.vvb
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.telegramerror
+    data:
+      title: Trøbbel i tårnet
+      message: Dongle utilgjengelig; event:{{trigger.event}}, id {{ trigger.entity_id
+        }} {{ trigger.payload }}
+  mode: single
+- id: '1672246073686'
+  alias: Åpne ladeluke tesla
+  description: ''
+  trigger:
+  - device_id: 0db524f736dc2aac25b5acf631cc232e
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  condition:
+  - condition: zone
+    entity_id: device_tracker.flyet_location_tracker
+    zone: zone.oh107b_garasje
+  action:
+  - device_id: 62331b848dc523151fee95d331ac8420
+    domain: lock
+    entity_id: lock.flyet_charge_port_latch
+    type: unlock
+  mode: single
+- id: '1672247656342'
+  alias: Åpne port på lang trykk
+  description: ''
+  trigger:
+  - device_id: 0db524f736dc2aac25b5acf631cc232e
+    domain: zha
+    platform: device
+    type: remote_button_long_release
+    subtype: remote_button_long_release
+  - platform: device
+    domain: mqtt
+    device_id: 2c51b30a4459c6779fb2f876be58b834
+    type: action
+    subtype: arrow_left_click
+    discovery_id: 0x943469fffeb73edc action_arrow_left_click
+  condition:
+  - condition: state
+    entity_id: cover.garasjeport_homekit
+    state: closed
+  action:
+  - device_id: 8d625f3fb90521b6c3234ed757d5a872
+    domain: cover
+    entity_id: cover.garasjeport_homekit
+    type: open
+  mode: single
+- id: '1672247757861'
+  alias: Lukk garasje lang trykk
+  description: ''
+  trigger:
+  - device_id: 0db524f736dc2aac25b5acf631cc232e
+    domain: zha
+    platform: device
+    type: remote_button_long_press
+    subtype: remote_button_long_press
+  - platform: device
+    domain: mqtt
+    device_id: 2c51b30a4459c6779fb2f876be58b834
+    type: action
+    subtype: arrow_right_click
+    discovery_id: 0x943469fffeb73edc action_arrow_right_click
+  condition:
+  - condition: state
+    entity_id: cover.garasjeport_homekit
+    state: open
+  action:
+  - device_id: 8d625f3fb90521b6c3234ed757d5a872
+    domain: cover
+    entity_id: cover.garasjeport_homekit
+    type: close
+  mode: single
+- id: '1672249707329'
+  alias: Forsinka lukking dobbelttrykk
+  description: ''
+  trigger:
+  - device_id: 0db524f736dc2aac25b5acf631cc232e
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
+  condition:
+  - condition: state
+    entity_id: cover.garasjeport_homekit
+    state: closed
+    enabled: false
+  action:
+  - device_id: 8d625f3fb90521b6c3234ed757d5a872
+    domain: cover
+    entity_id: cover.garasjeport_homekit
+    type: open
+  - type: turn_on
+    device_id: 57e2420797e756cee30ae577a03c723a
+    entity_id: switch.garasjelys_channel_1
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 55
+      milliseconds: 0
+  - type: turn_off
+    device_id: 57e2420797e756cee30ae577a03c723a
+    entity_id: switch.garasjelys_channel_1
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - device_id: 8d625f3fb90521b6c3234ed757d5a872
+    domain: cover
+    entity_id: cover.garasjeport_homekit
+    type: close
+  - type: turn_off
+    device_id: 57e2420797e756cee30ae577a03c723a
+    entity_id: switch.garasjelys_channel_2
+    domain: switch
+  mode: single
+- id: '1673643044906'
+  alias: Test ikea switch
+  description: ''
+  trigger:
+  - device_id: a09efdadfa0fd9857ebd203754260a8c
+    domain: zha
+    platform: device
+    type: remote_button_long_press
+    subtype: dim_up
+  condition: []
+  action:
+  - type: toggle
+    device_id: 4a166bcd6afb39e113d830761165e073
+    entity_id: light.ikea_of_sweden_tradfri_bulb_e27_cws_806lm_light
+    domain: light
+  mode: single
+- id: '1673643681060'
+  alias: Ny automasjon
+  description: ''
+  trigger:
+  - device_id: a09efdadfa0fd9857ebd203754260a8c
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: turn_on
+  condition: []
+  action:
+  - type: toggle
+    device_id: 3ef4261b9abcf9ee44565a63bd2f3b44
+    entity_id: switch.ikea_of_sweden_tradfri_control_outlet_switch
+    domain: switch
+  mode: single
+- id: '1679950793960'
+  alias: 'Varsle garasjeport '
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - cover.garasjeport_homekit
+    to: open
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: device
+    device_id: 8d625f3fb90521b6c3234ed757d5a872
+    domain: cover
+    entity_id: cover.garasjeport_homekit
+    type: is_open
+  action:
+  - service: notify.telegramnotification
+    data:
+      message: Garasjeporten har vært åpen en time
+      data:
+        inline_keyboard:
+        - /lukk_garasje
+  mode: single
+- id: '1681211531923'
+  alias: Test termostat
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 20
+    target:
+      entity_id: climate.stue
+  mode: single
+- id: '1685517259628'
+  alias: Garasje kort åpningstid
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - cover.garasjeport_homekit
+    to: open
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition:
+  - condition: device
+    device_id: 8d625f3fb90521b6c3234ed757d5a872
+    domain: cover
+    entity_id: cover.garasjeport_homekit
+    type: is_open
+  action:
+  - service: notify.telegramspam
+    data:
+      data:
+        inline_keyboard:
+        - /lukk_garasje
+      message: Garasjeporten har vært åpen 5 min
+  mode: single
+- id: '1691928661429'
+  alias: Restart kamera
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.kameraping
+    for:
+      hours: 0
+      minutes: 11
+      seconds: 0
+    to: 'off'
+  - platform: state
+    entity_id:
+    - binary_sensor.kameraping
+    for:
+      hours: 0
+      minutes: 16
+      seconds: 0
+    to: 'off'
+  - platform: state
+    entity_id:
+    - binary_sensor.kameraping
+    for:
+      hours: 0
+      minutes: 21
+      seconds: 0
+    to: 'off'
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.ikea_of_sweden_tradfri_control_outlet_switch
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 10
+      milliseconds: 0
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.ikea_of_sweden_tradfri_control_outlet_switch
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - service: rest_command.sett_veranda
+    data: {}
+  mode: single
+- id: '1694722257538'
+  alias: 4 knapps garasjelys
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 2c51b30a4459c6779fb2f876be58b834
+    type: action
+    subtype: 'off'
+    discovery_id: 0x943469fffeb73edc action_off
+  condition: []
+  action:
+  - type: toggle
+    device_id: 57e2420797e756cee30ae577a03c723a
+    entity_id: 84b3145b171f06f0fc1300c98fbcaa52
+    domain: switch
+  - type: toggle
+    device_id: 57e2420797e756cee30ae577a03c723a
+    entity_id: 3a11e4a9475bd92710ce0694b37a923a
+    domain: switch
+  mode: single
+- id: '1694722327938'
+  alias: 4knapps utelys
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 2c51b30a4459c6779fb2f876be58b834
+    type: action
+    subtype: 'on'
+    discovery_id: 0x943469fffeb73edc action_on
+  condition: []
+  action:
+  - type: toggle
+    device_id: bd0dfbff90fe9cad71ac637aa1ee4be4
+    entity_id: b785feffdfe8a86ed388e4ae49edc300
+    domain: light
+  mode: single
+- id: '1694805047836'
+  alias: Snap cleverio dørkamera
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      filename: /media/snapshots/camera_{{now().strftime('%Y%m%d_%H%M%S')}}.mp4
+    target:
+      device_id: 87514acb8730da302d6068eba0623fe2
+  mode: single
+- id: '1695305140780'
+  alias: Varsle åpen bod
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.politimester_fix_dr_bod
+    to: open
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.telegramspam
+    data:
+      message: Boden har vært åpen i fem minutter
+  mode: single
+- id: telegramtestcallback
+  alias: Telegram callback to test notifications
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_callback
+    event_data:
+      command: /lukk_garasje
+  action:
+  - device_id: 8d625f3fb90521b6c3234ed757d5a872
+    domain: cover
+    entity_id: 51188bb369dad3a5402e4b4bf37b59ef
+    type: close
+- id: '1695722699269'
+  alias: Lysstyrke opp Janna
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 8bd2d05282d1a3a0de6f0705e143182b
+    type: action
+    subtype: brightness_move_up
+    discovery_id: 0xf082c0fffe130b0c action_brightness_move_up
+  condition: []
+  action:
+  - device_id: 2de09e0c63e539231e9c12ca3605ac61
+    domain: light
+    entity_id: b7c679f1352fd0735f5b8da56a8fec9a
+    type: brightness_increase
+  mode: single
+- id: '1695723944374'
+  alias: Lys Janna på
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 8bd2d05282d1a3a0de6f0705e143182b
+    type: action
+    subtype: 'on'
+    discovery_id: 0xf082c0fffe130b0c action_on
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 2de09e0c63e539231e9c12ca3605ac61
+    entity_id: b7c679f1352fd0735f5b8da56a8fec9a
+    domain: light
+    brightness_pct: 65
+  mode: single
+- id: '1695723972236'
+  alias: Lys Janna av
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 8bd2d05282d1a3a0de6f0705e143182b
+    type: action
+    subtype: 'off'
+    discovery_id: 0xf082c0fffe130b0c action_off
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 2de09e0c63e539231e9c12ca3605ac61
+    entity_id: b7c679f1352fd0735f5b8da56a8fec9a
+    domain: light
+  mode: single
+- id: '1695724048492'
+  alias: Lys Janna ned
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 8bd2d05282d1a3a0de6f0705e143182b
+    type: action
+    subtype: brightness_move_down
+    discovery_id: 0xf082c0fffe130b0c action_brightness_move_down
+  condition: []
+  action:
+  - device_id: 2de09e0c63e539231e9c12ca3605ac61
+    domain: light
+    entity_id: b7c679f1352fd0735f5b8da56a8fec9a
+    type: brightness_decrease
+  mode: single
+- id: '1696794997998'
+  alias: Demp sengelys Janna
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /1
+    hours: '20'
+  - platform: time_pattern
+    minutes: /1
+    hours: '21'
+  - platform: time_pattern
+    minutes: /1
+    hours: '22'
+  - platform: time_pattern
+    minutes: /1
+    hours: '23'
+  - platform: time_pattern
+    minutes: /1
+    hours: '0'
+  - platform: time_pattern
+    minutes: /1
+    hours: '1'
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 2de09e0c63e539231e9c12ca3605ac61
+    entity_id: b7c679f1352fd0735f5b8da56a8fec9a
+    domain: light
+  - condition: template
+    value_template: '{{ state_attr("light.0x1c34f1fffec3bafc", "brightness" ) > 64}}'
+    alias: Lys > 25%
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: b7c679f1352fd0735f5b8da56a8fec9a
+    data:
+      brightness: '{{ ((state_attr("light.0x1c34f1fffec3bafc", "brightness" )- 2))
+        |float }}
+
+        '
+    alias: Demp lys 1%
   mode: single

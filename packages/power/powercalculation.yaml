@@ -5,6 +5,7 @@ power_powercalculation:
       name: Measured kWh 1 vaskemaskin
       #unit_prefix: k
       round: 3
+      method: left
       unique_id: measured_kwh_1
 
     - platform: integration
@@ -12,6 +13,7 @@ power_powercalculation:
       name: Measured kWh 2 oppvask
       #unit_prefix: k
       round: 3
+      method: left
       unique_id: measured_kwh_2
 
     - platform: integration
@@ -28,14 +30,6 @@ power_powercalculation:
       round: 3
       method: left
       unique_id: measured_kwh_4
-
-    - platform: integration
-      source: sensor.measured_power_4
-      name: Measured kWh 4 VVB left
-      #unit_prefix: k
-      round: 3
-      method: left
-      unique_id: measured_kwh_4_left
 
     - platform: integration
       source: sensor.measured_power_5

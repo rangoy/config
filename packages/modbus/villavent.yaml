@@ -9,7 +9,7 @@ modbus_villavent:
       - name: Villavent
         slave: 1
         data_type: uint16
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -24,7 +24,7 @@ modbus_villavent:
         address: 213
         #register_type: input
         unit_of_measurement: °C
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -36,7 +36,7 @@ modbus_villavent:
         address: 214
         #register_type: input
         unit_of_measurement: °C
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -48,7 +48,7 @@ modbus_villavent:
         address: 215
         #register_type: input
         unit_of_measurement: °C
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -60,7 +60,7 @@ modbus_villavent:
         address: 216
         #register_type: input
         unit_of_measurement: °C
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -72,7 +72,7 @@ modbus_villavent:
         address: 217
         #register_type: input
         unit_of_measurement: "°C"
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -84,7 +84,7 @@ modbus_villavent:
         address: 100
         #register_type: input
         unit_of_measurement: Nivå
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -96,7 +96,7 @@ modbus_villavent:
         address: 110
         #register_type: input
         unit_of_measurement: RPM
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -108,7 +108,7 @@ modbus_villavent:
         address: 111
         #register_type: input
         unit_of_measurement: RPM
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -120,7 +120,7 @@ modbus_villavent:
         address: 138
         #register_type: input
         unit_of_measurement: Nivå
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -132,7 +132,7 @@ modbus_villavent:
         address: 101
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -144,7 +144,7 @@ modbus_villavent:
         address: 102
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -156,7 +156,7 @@ modbus_villavent:
         address: 103
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -168,7 +168,7 @@ modbus_villavent:
         address: 104
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -180,7 +180,7 @@ modbus_villavent:
         address: 105
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -192,7 +192,7 @@ modbus_villavent:
         address: 106
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -204,7 +204,7 @@ modbus_villavent:
         address: 200
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -216,7 +216,7 @@ modbus_villavent:
         address: 201
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -228,7 +228,7 @@ modbus_villavent:
         address: 203
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -240,7 +240,7 @@ modbus_villavent:
         address: 204
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -252,7 +252,7 @@ modbus_villavent:
         address: 206
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -264,7 +264,7 @@ modbus_villavent:
         address: 207
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -276,7 +276,7 @@ modbus_villavent:
         address: 208
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -288,7 +288,7 @@ modbus_villavent:
         address: 209
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -300,7 +300,7 @@ modbus_villavent:
         address: 210
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -312,7 +312,7 @@ modbus_villavent:
         address: 211
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -324,7 +324,7 @@ modbus_villavent:
         address: 212
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -336,7 +336,7 @@ modbus_villavent:
         address: 221
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -348,7 +348,7 @@ modbus_villavent:
         address: 233
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -360,7 +360,7 @@ modbus_villavent:
         address: 235
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 0.1
         offset: 0
         precision: 1
@@ -372,7 +372,7 @@ modbus_villavent:
         address: 350
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -384,7 +384,7 @@ modbus_villavent:
         address: 600
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
@@ -396,7 +396,7 @@ modbus_villavent:
         address: 601
         #register_type: input
         #unit_of_measurement:
-        count: 1
+        #count: 1
         scale: 1
         offset: 0
         precision: 1
